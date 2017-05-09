@@ -4,10 +4,10 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :first_name, :null => false
       t.string :last_name, :null => false
       t.string :email, :null => false, :unique => true
-      t.string :hashed_password, :null => false
       t.string :location, :null => false
       t.string :phone, :null => false
       t.string :looking_for_contacts, :null => false
+      t.string :password_digest
 
       t.timestamps
     end

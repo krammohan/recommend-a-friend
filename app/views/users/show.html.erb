@@ -20,28 +20,5 @@
 
 	  <h1>Welcome back, <%= @user.first_name + ' ' + @user.last_name %>!</h1>
 	</div>
-	<div>	
-	  <h3>These people in your network are looking for contacts:</h3>
-
-	  <% @unrecommended.each do |contact| %>
-	  	<h4><%= contact.first_name %> <%= contact.last_name %> is looking for contacts in <%= contact.location %>
-	  		<a class="btn" href="/people/<%= contact.id%>/recommend">
-			<br><button class="btn" type="submit">Recommend a Friend</button></a>
-	  	</h4>
-	  <% end %>
-	</div>
-
-	<div>
-		<h3>Your Recommendations:</h3>
-		<ul>
-
-			<% @unfriended.each do |rec| %>
-				<h4><%=rec.first_name%> <%=rec.last_name%>
-				<form id="add-friend" method="post" action="/people/<%=rec.id%>">
-		      		<br><button class="btn" type="submit">Add as Friend</button>
-	   			</form></li>
-	   		  <% end %>
-
-		</ul>
-	</div>
+	
 </div>

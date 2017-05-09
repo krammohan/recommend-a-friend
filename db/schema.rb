@@ -16,23 +16,28 @@ ActiveRecord::Schema.define(version: 20170509205604) do
   enable_extension "plpgsql"
 
   create_table "contacts", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "friend_id",  null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "recommendations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "user_id",        null: false
+    t.integer  "recommended_id", null: false
+    t.integer  "recommender_id", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",           null: false
     t.string   "last_name",            null: false
     t.string   "email",                null: false
-    t.string   "hashed_password",      null: false
     t.string   "location",             null: false
     t.string   "phone",                null: false
     t.string   "looking_for_contacts", null: false
+    t.string   "password_digest"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
