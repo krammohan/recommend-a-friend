@@ -13,6 +13,23 @@ class UsersController < ApplicationController
   def show
     @user_id = session[:user_id]
     @user = User.find(@user_id)
+    @unrecommended = Array.new
+    @unfriended = Array.new
+    contacts = @user.friends.where(looking_for_contacts: "Yes")
+    potentials = @user.recommendeds
+
+    potentials.each do |pot|
+      if !Contact.find_by(user_id: @user.id, friend_id: pot.id)
+        @unfriended << pot
+      end
+    end
+    
+    contacts.each do |c|
+      if !Recommendation.find_by(recommender_id: @user.id, user_id: c.id)
+        @unrecommended << c
+      end
+    end
+
   end
 
 
