@@ -19,7 +19,7 @@ class FriendsController < ApplicationController
 	  to: number,
 	  body: body
 	)
-	redirect "/users/#{current_user.id}/contacts"
+	redirect_to "/users/#{current_user.id}"
 
   end
 

@@ -4,6 +4,7 @@
 
   <%= form_tag "/users/#{current_user.id}/friends" do %>
     <%= text_field_tag "body", "Type what you want to say here..." %>
+    <%= hidden_field_tag 'friend_id', @friend.id %>
     <%= submit_tag "Send" %>
   <% end %>
 
