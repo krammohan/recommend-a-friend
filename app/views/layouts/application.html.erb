@@ -1,21 +1,63 @@
 <!DOCTYPE html>
+
 <html>
   <head>
-    <title>RecommendAFriend</title>
+    <title>Recommend A Friend</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if current_user %>
-      <%= link_to "Logout", '/logout' %><br>
-    <% else %>
-      <%= link_to "Login", '/login' %><br>
-      <%= link_to "Sign Up", '/signup' %><br>
-    <% end %>
-    <%= yield %>
-  </body>
+  <
+
+  <div class="jumbotron">
+    <center>
+      <h1>Recommend A Friend</h1> 
+        <p>Help your friends reach out to new contacts in your network.</p> 
+    </center>
+  </div>
+
+  
+  <div class= "navbar">
+    <center>
+      <% if current_user %>
+        <a href="/logout">Logout</a>
+        <a href="/">Profile</a>
+        <%= link_to("Add Friends", user_contacts_path(current_user)) %>
+        <%= link_to("Contacts", user_friends_path(current_user)) %>
+        <% if current_user.looking_for_contacts == "No" %>
+          <%= link_to("Receive Recommendations", user_path(current_user), :method => :put) %>
+        <% elsif current_user.looking_for_contacts == "Yes" %>
+          <%= link_to("Stop Receiving Recommendations", user_path(current_user), :method => :put) %>
+        <% end %>
+      <% else %>
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
+      <% end %>
+    </center>
+  </div>
+  
+
+
+
+    <body style = "background-color: black">
+
+      <div class="container nav bar-wrapper" style="color: white; margin-top: 40px">
+
+        <div class="row-fluid">
+
+          <div class="rows col-lg-12 col-md-10 ">
+          <center>
+          
+            <%= yield %>
+          </center>
+          </div>
+        </div>
+
+      </div>
+
+    </body>
+
   
 </html>

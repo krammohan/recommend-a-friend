@@ -1,0 +1,21 @@
+<div class="margin-top-10P">
+ <div class="w3-row">
+ <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">Add Friends</h4>
+        </div>
+      </div>
+     </div>
+    </div>
+
+<div class="people-to-add">
+	<% if @people %>
+		<% @people.each do |person| %>
+			<h1><%= person.first_name %> <%= person.last_name %></h1> 
+			<%= link_to("Add Contact", user_contacts_path(:friend_id => person.id), :method => :post) %>
+
+		<% end %>
+	<% else %>
+		<h1>There are no friends to add at this time.</h1>
+	<% end %>
+</div>
