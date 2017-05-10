@@ -32,6 +32,18 @@ class UsersController < ApplicationController
 
   end
 
+  def update
+    if current_user.looking_for_contacts == "Yes"
+      current_user.update_attributes(:looking_for_contacts => "No")
+    elsif current_user.looking_for_contacts == "No"
+      current_user.update_attributes(:looking_for_contacts => "Yes")
+    end
+    redirect_to "/"
+    puts "*"*454
+    p current_user.looking_for_contacts
+    puts "*"*454
+  end
+
 
   private
 

@@ -24,6 +24,12 @@
       <% if current_user %>
         <a href="/logout">Logout</a>
         <a href="/logout">Add Friends</a>
+
+        <% if current_user.looking_for_contacts == "No" %>
+          <%= link_to("Receive Recommendations", user_path(current_user), :method => :put) %>
+        <% elsif current_user.looking_for_contacts == "Yes" %>
+          <%= link_to("Stop Receiving Recommendations", user_path(current_user), :method => :put) %>
+        <% end %>
       <% else %>
         <a href="/signup">Sign Up</a>
         <a href="/login">Login</a>
