@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true
   validates :email, uniqueness: true
 
-  def add_people
+  def addable_people
     people = User.all
     can_add = Array.new
     people.each do |person|
@@ -20,7 +20,7 @@ class User < ApplicationRecord
     return can_add
   end
 
-  def recommend_friends(location)
+  def recommendable_friends(location)
     people_to_recommend = Array.new
     self.friends.each do |friend|
       if friend.looking_for_contacts == "Yes" && friend.location == location

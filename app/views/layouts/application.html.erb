@@ -23,8 +23,9 @@
     <center>
       <% if current_user %>
         <a href="/logout">Logout</a>
-        <a href="/logout">Add Friends</a>
-
+        <a href="/">Profile</a>
+        <%= link_to("Add Friends", user_contacts_path(current_user)) %>
+        <%= link_to("Contacts", user_friends_path(current_user)) %>
         <% if current_user.looking_for_contacts == "No" %>
           <%= link_to("Receive Recommendations", user_path(current_user), :method => :put) %>
         <% elsif current_user.looking_for_contacts == "Yes" %>
