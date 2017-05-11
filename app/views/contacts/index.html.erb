@@ -11,9 +11,9 @@
 <div class="people-to-add">
 	<% if @people %>
 		<% @people.each do |person| %>
-			<h1><%= person.first_name %> <%= person.last_name %></h1> 
-			<%= link_to("Add Contact", user_contacts_path(:friend_id => person.id), :method => :post) %>
-
+			<h4><%= person.first_name %> <%= person.last_name %> 
+			<%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(:friend_id => person.id), :method => :post %>
+			</h4>
 		<% end %>
 	<% else %>
 		<h1>There are no friends to add at this time.</h1>

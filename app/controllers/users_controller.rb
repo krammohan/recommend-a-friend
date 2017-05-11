@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         @unfriended << pot
       end
     end
-    
+
     contacts.each do |c|
       if !Recommendation.find_by(recommender_id: @user.id, user_id: c.id)
         @unrecommended << c
@@ -39,9 +39,7 @@ class UsersController < ApplicationController
       current_user.update_attributes(:looking_for_contacts => "Yes")
     end
     redirect_to "/"
-    puts "*"*454
-    p current_user.looking_for_contacts
-    puts "*"*454
+
   end
 
 

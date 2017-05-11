@@ -14,4 +14,5 @@ class ContactsController < ApplicationController
 	  end
 	  redirect_to "/users/#{@user.id}"
 	end
+	
 end

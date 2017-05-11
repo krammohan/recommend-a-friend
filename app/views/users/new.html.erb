@@ -1,11 +1,11 @@
 <h1>Sign Up</h1>
 <%= form_for :user, url: '/users' do |f| %>
-  First Name: <%= f.text_field :first_name %>
-  Last Name: <%= f.text_field :last_name %>
-  Location: <%= f.text_field :location %>
-  Looking For Contacts: <%= f.select :looking_for_contacts, [['Yes', "Yes"], ['No', "No"]]%>
-  Phone: <%= f.text_field :phone %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.text_field :password %>
-  <%= f.submit "Submit" %>
+  First Name: <%= f.text_field :first_name %><br><br>
+  Last Name: <%= f.text_field :last_name %><br><br>
+  Location: <%= f.text_field :location %><br><br>
+  Looking For Contacts: <%= f.select :looking_for_contacts, [['Yes', "Yes"], ['No', "No"]]%><br><br>
+  Phone: <%= f.text_field :phone %><br><br>
+  Email: <%= f.text_field :email %><br><br>
+  Password: <%= f.text_field :password %><br><br>
+  <%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>

@@ -4,7 +4,7 @@
 			<h3><%= c.first_name %> <%= c.last_name %></h3>
 			<h6>Phone: <%= c.phone %></h6>
 			<h6>Email: <%= c.email %></h6>
-			<%= link_to("Send A Text", new_user_friend_path(current_user, :friend_id => c.id), :method => :get) %>
+			<%= link_to("Send A Text", new_user_friend_path(current_user, :friend_id => c.id), :method => :get, :class => "btn btn-primary btn-xs") %>
 	<% end %>
 	<br>
   </div>

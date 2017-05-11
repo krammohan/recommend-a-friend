@@ -9,9 +9,10 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <
-
-  <div class="jumbotron">
+  
+ <body style="background-color:#cee1ed">
+ <div id="content">
+  <div class="jumbotron" style="color: white; background-image: url('https://talkroute.com/wp-content/uploads/2016/04/network.png'); background-repeat: no-repeat; background-size: 100% 100%">
     <center>
       <h1>Recommend A Friend</h1> 
         <p>Help your friends reach out to new contacts in your network.</p> 
@@ -23,14 +24,9 @@
     <center>
       <% if current_user %>
         <a href="/logout">Logout</a>
-        <a href="/">Profile</a>
-        <%= link_to("Add Friends", user_contacts_path(current_user)) %>
-        <%= link_to("Contacts", user_friends_path(current_user)) %>
-        <% if current_user.looking_for_contacts == "No" %>
-          <%= link_to("Receive Recommendations", user_path(current_user), :method => :put) %>
-        <% elsif current_user.looking_for_contacts == "Yes" %>
-          <%= link_to("Stop Receiving Recommendations", user_path(current_user), :method => :put) %>
-        <% end %>
+        <a href="/"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+        <%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(current_user) %>
+        <%= link_to "<i class='fa fa-address-book' aria-hidden='true'></i>".html_safe, user_friends_path(current_user) %>
       <% else %>
         <a href="/signup">Sign Up</a>
         <a href="/login">Login</a>
@@ -41,9 +37,9 @@
 
 
 
-    <body style = "background-color: black">
+   
 
-      <div class="container nav bar-wrapper" style="color: white; margin-top: 40px">
+      <div class="container nav bar-wrapper" style="margin-top: 40px">
 
         <div class="row-fluid">
 
@@ -56,7 +52,7 @@
         </div>
 
       </div>
-
+      </div>
     </body>
 
   
