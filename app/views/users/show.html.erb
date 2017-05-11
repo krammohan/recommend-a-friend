@@ -6,7 +6,7 @@
 	      <!-- Profile -->
 	      <div class="w3-card-2 w3-round w3-white">
 	        <div class="w3-container">
-	         <h3 class="w3-center">Welcome back, <%= @user.first_name + ' ' + @user.last_name %>!</h3>
+	         <h3 class="w3-center">Welcome, <%= @user.first_name + ' ' + @user.last_name %>!</h3>
 	        
 	           <h4><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.first_name%> <%=current_user.last_name%></h4>
 	           <h4><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.location%></h4>
@@ -41,13 +41,18 @@
 
 	<div>
 		<h4>Your Recommendations:</h4>
-		<ul>
-
+		
+		  <% if @unfriended.length > 0 %>
 			<% @unfriended.each do |rec| %>
-				<p><%=rec.first_name%> <%=rec.last_name%>
-				<%= link_to("Add Contact", user_contacts_path(current_user, :friend_id => rec.id), :method => :post) %></li>
-	   		  <% end %>
-	   		  	</p>
-		</ul>
+				<p>
+				<%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(current_user, :friend_id => rec.id), :method => :post %>
+				<%=rec.first_name%> <%=rec.last_name%>
+				</p>
+	   		<% end %>
+	   	  <% else %> 	
+	   	    <p>You have no recommendations at this time.</p>
+	   	  <% end %>
+		
 	</div>
+	<br><br><br>
 </div>

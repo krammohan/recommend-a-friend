@@ -2,7 +2,7 @@
  <div class="w3-row">
  <div class="w3-card-2 w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center">Add Friends</h4>
+         <h3 class="w3-center">Add Friends</h3><br>
         </div>
       </div>
      </div>
@@ -13,9 +13,9 @@
 		<% @people.each do |person| %>
 			<h4><%= person.first_name %> <%= person.last_name %> 
 			<%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(:friend_id => person.id), :method => :post %>
-			</h4>
+			</h4><br>
 		<% end %>
 	<% else %>
-		<h1>There are no friends to add at this time.</h1>
+		<h4>There are no friends to add at this time.</h4>
 	<% end %>
 </div>
