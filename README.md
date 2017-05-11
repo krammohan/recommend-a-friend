@@ -1,4 +1,4 @@
-# README
+# Recommend A Friend
 
 An application that allows users to recommend friends to one another based on location.
 
