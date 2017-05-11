@@ -1,18 +1,21 @@
+<h3>Your Contacts</h3>
+<br>
 <% if @contacts.count != 0%>
   <div class="login-signup">
 	<% @contacts.each do |c| %>
-			<h3><%= c.first_name %> <%= c.last_name %></h3>
+			<h4><%= c.first_name %> <%= c.last_name %></h4>
 			<h6>Phone: <%= c.phone %></h6>
 			<h6>Email: <%= c.email %></h6>
-			<%= link_to("Send A Text", new_user_friend_path(current_user, :friend_id => c.id), :method => :get) %>
+			<%= link_to("Send A Text", new_user_friend_path(current_user, :friend_id => c.id), :method => :get, :class => "btn btn-primary btn-xs") %>
+			<br><br>
 	<% end %>
-	<br>
+	<br><br>
   </div>
 <% elsif @contacts.count == 0 %>
   <div class="login-signup">
-	<h1>You have no contacts at this time!</h1>
+	<h4>You have no contacts at this time!</h4>
 	<h3>
-	<a href="/people" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News">Add Contacts</a>
+	<%= link_to "<i class='fa fa-user-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(current_user) %>
 	</h3>
   </div>
 <% end %>

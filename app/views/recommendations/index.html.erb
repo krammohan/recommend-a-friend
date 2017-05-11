@@ -1,11 +1,12 @@
+<h3>Connect <%= @friend.first_name%> <%= @friend.last_name%> with a friend!</h3><br>
 <div class="login-signup">
 <% if @contacts_to_recommend.count != 1 && @contacts_to_recommend.count != 0%>
 	<% @contacts_to_recommend.each do |contact| %>
 	  <% if contact != @friend %>
 	    <% if @recommended_already == false %>
-			<h1><%= contact.first_name %> <%= contact.last_name %></h1> 
+			<h4><%= contact.first_name %> <%= contact.last_name %></h4> 
 
-			<%= link_to("Recommend", user_recommendations_path(current_user, :contact_id => contact.id, :friend_id => @friend.id), :method => :post) %>
+			<%= link_to("Recommend", user_recommendations_path(current_user, :contact_id => contact.id, :friend_id => @friend.id), :method => :post, :class => "btn btn-info btn-xs") %>
 
 		 <% end %> 
 	   <% end %>
