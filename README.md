@@ -6,6 +6,7 @@ If you or a friend have moved somewhere new and are in need of contacts, Recomme
 
 ** Disclaimer: The number to send the text to must be registered through the Twilio website
 
-* Uses Ruby (Sinatra web app library) and RESTful API, deployed on Heroku
+* Uses Ruby on Rails and RESTful API, deployed on Heroku
+* Bootstrap CSS & HTML5
 * Allows users to send personalized text message using Twilio API
 * To run, go to https://recommend-friend.herokuapp.com/ and sign up!
