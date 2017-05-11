@@ -1,58 +1,66 @@
-<div class="show-page">
-	<div class="margin-top-10P">
-	  <div class="w3-row">
-	    <!-- Left Column -->
-	    <div class="w3-col m3">
-	      <!-- Profile -->
-	      <div class="w3-card-2 w3-round w3-white">
-	        <div class="w3-container">
-	         <h3 class="w3-center">Welcome, <%= @user.first_name + ' ' + @user.last_name %>!</h3>
-	        
-	           <h4><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.first_name%> <%=current_user.last_name%></h4>
-	           <h4><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.location%></h4>
-	           <h4><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.phone%></h4>
-	         	<% if current_user.looking_for_contacts == "No" %>
-                  <%= link_to("Receive Recommendations", user_path(current_user), :method => :put, :class => "btn btn-success btn-xs") %>
-                <% elsif current_user.looking_for_contacts == "Yes" %>
-                  <%= link_to("Stop Receiving Recommendations", user_path(current_user), :method => :put, :class => "btn btn-danger btn-xs") %>
-                <% end %>
-	         <hr style="color:black">
+<% if current_user %>
+	<div class="show-page">
+		<div class="margin-top-10P">
+		  <div class="w3-row">
+		    <!-- Left Column -->
+		    <div class="w3-col m3">
+		      <!-- Profile -->
+		      <div class="w3-card-2 w3-round w3-white">
+		        <div class="w3-container">
+		         <h3 class="w3-center">Welcome, <%= @user.first_name + ' ' + @user.last_name %>!</h3>
+		        
+		           <h4><i class="fa fa-user fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.first_name%> <%=current_user.last_name%></h4>
+		           <h4><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.location%></h4>
+		           <h4><i class="fa fa-phone fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.phone%></h4>
+		         	<% if current_user.looking_for_contacts == "No" %>
+	                  <%= link_to("Receive Recommendations", user_path(current_user), :method => :put, :class => "btn btn-success btn-xs") %>
+	                <% elsif current_user.looking_for_contacts == "Yes" %>
+	                  <%= link_to("Stop Receiving Recommendations", user_path(current_user), :method => :put, :class => "btn btn-danger btn-xs") %>
+	                <% end %>
+		         <hr style="color:black">
 
-	        </div>
-	      </div>
-	     </div>
-	    </div>
-	      <br>
+		        </div>
+		      </div>
+		     </div>
+		    </div>
+		      <br>
 
+		</div>
+
+		<div>	
+		  <h4>These people in your network are looking for contacts:</h4>
+
+		  <% @unrecommended.each do |contact| %>
+		  	<p><%= contact.first_name %> <%= contact.last_name %> is looking for contacts in <%= contact.location %>
+		  	  <div class="btn-group">
+		  		<%= link_to("Recommend A Friend", user_recommendations_path(current_user, :contact_id => contact.id), :method => :get, :class => "btn btn-info btn-xs") %>
+		  		<br><br>
+		  	  </div>
+		  	</p>
+		  <% end %>
+		</div>
+
+		<div>
+			<h4>Your Recommendations:</h4>
+			
+			  <% if @unfriended.length > 0 %>
+				<% @unfriended.each do |rec| %>
+					<p>
+					<%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(current_user, :friend_id => rec.id), :method => :post %>
+					<%=rec.first_name%> <%=rec.last_name%>
+					</p>
+		   		<% end %>
+		   	  <% else %> 	
+		   	    <p>You have no recommendations at this time.</p>
+		   	  <% end %>
+			
+		</div>
+		<br><br><br>
 	</div>
+<% else %>
+  <h4>If you or a friend have moved somewhere new and are in need of contacts, Recommend A Friend is the social networking site for you. <br><br> Simply log on, browse contacts to add and recommend friends to them in their same location by just a click of a button. <br><br> To reach out to a contact you have been recommended, you can either email them or send them a text message directly through the site! <br><br> Log in or sign up today!</h4><br>
 
-	<div>	
-	  <h4>These people in your network are looking for contacts:</h4>
+  <%= link_to "Log In", "/login", :class => "btn btn-primary" %>
+  <%= link_to "Sign Up", "/signup", :class => "btn btn-primary" %>
 
-	  <% @unrecommended.each do |contact| %>
-	  	<p><%= contact.first_name %> <%= contact.last_name %> is looking for contacts in <%= contact.location %>
-	  	  <div class="btn-group">
-	  		<%= link_to("Recommend A Friend", user_recommendations_path(current_user, :contact_id => contact.id), :method => :get, :class => "btn btn-info btn-xs") %>
-	  		<br><br>
-	  	  </div>
-	  	</p>
-	  <% end %>
-	</div>
-
-	<div>
-		<h4>Your Recommendations:</h4>
-		
-		  <% if @unfriended.length > 0 %>
-			<% @unfriended.each do |rec| %>
-				<p>
-				<%= link_to "<i class='fa fa-plus' aria-hidden='true'></i>".html_safe, user_contacts_path(current_user, :friend_id => rec.id), :method => :post %>
-				<%=rec.first_name%> <%=rec.last_name%>
-				</p>
-	   		<% end %>
-	   	  <% else %> 	
-	   	    <p>You have no recommendations at this time.</p>
-	   	  <% end %>
-		
-	</div>
-	<br><br><br>
-</div>
+<% end %>
